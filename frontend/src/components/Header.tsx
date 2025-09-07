@@ -28,10 +28,12 @@ const Header: React.FC = () => {
           {/* Logo and Navigation */}
           <div className="flex items-center">
             <Link to={getDashboardPath()} className="flex items-center">
-              <div className="w-8 h-8 bg-black rounded-lg flex items-center justify-center mr-3">
-                <span className="text-white font-bold text-sm">iC</span>
-              </div>
-              <span className="font-semibold text-xl text-gray-900">iCog</span>
+              <img
+                src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSqlzZBjWwRFYZUkEjX4xpn9HsXaf2kcknTgQ&s"
+                alt="Logo"
+                className="w-8 h-8 object-contain mr-3 rounded"
+              />
+              <span className="sr-only">Home</span>
             </Link>
             
             {/* Desktop Navigation */}
