@@ -1,0 +1,28 @@
+# Dependencies
+frontend/node_modules/
+
+# Builds
+frontend/dist/
+
+# Python
+.venv/
+__pycache__/
+*.pyc
+
+# Django artifacts
+db.sqlite3
+chroma_store/
+
+# Env
+.env
+*.env
+
+# Logs
+logs/
+*.log
+
+# IDE/editor
+.vscode/
+.idea/
+.DS_Store
+
