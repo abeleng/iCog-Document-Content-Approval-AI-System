@@ -12,6 +12,7 @@ __pycache__/
 # Django artifacts
 db.sqlite3
 chroma_store/
+backend/
 
 # Env
 .env
