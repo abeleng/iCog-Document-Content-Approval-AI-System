@@ -58,8 +58,12 @@ const Auth: React.FC = () => {
     <div className="min-h-screen bg-gray-50 flex flex-col justify-center py-12 sm:px-6 lg:px-8">
       <div className="sm:mx-auto sm:w-full sm:max-w-md">
         <div className="flex justify-center">
-          <div className="w-12 h-12 bg-black rounded-lg flex items-center justify-center">
-            <span className="text-white font-bold text-lg">iC</span>
+          <div className="w-6 h-6 rounded-lg overflow-hidden flex items-center justify-center bg-black">
+            <img
+              src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSqlzZBjWwRFYZUkEjX4xpn9HsXaf2kcknTgQ&s"
+              alt="Logo"
+              className="w-full h-full object-cover"
+            />
           </div>
         </div>
         <h2 className="mt-6 text-center text-3xl font-bold text-gray-900">
@@ -178,7 +182,7 @@ const Auth: React.FC = () => {
             <div>
               <button
                 type="submit"
-                disabled={loading || (isDemoMode && !selectedRole)}
+                disabled={loading || (!!isDemoMode && !selectedRole)}
                 className="w-full flex justify-center items-center py-3 px-4 border border-transparent rounded-lg shadow-sm text-sm font-medium text-white bg-black hover:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-black disabled:opacity-50 disabled:cursor-not-allowed transition-all hover:scale-105"
               >
                 {loading ? (
