@@ -1,5 +1,6 @@
 # Dependencies
 frontend/node_modules/
+frontend/node_modules_old*/
 
 # Builds
 frontend/dist/
