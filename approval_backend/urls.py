@@ -15,15 +15,25 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path, include
+from django.urls import path, include, re_path
 from django.http import JsonResponse, HttpResponse
+from django.conf import settings
+import os
 
 
 def root_index(_request):
+    # Serve built React app if available
+    index_path = settings.FRONTEND_DIST / 'index.html'
+    if index_path.exists():
+        try:
+            return HttpResponse(index_path.read_text(encoding='utf-8'))
+        except Exception:
+            pass
     return JsonResponse({
         "service": "approval-backend",
         "status": "ok",
-        "endpoints": ["/api/search/keywords/", "/api/ai/precheck/", "/health/"]
+        "endpoints": ["/api/search/keywords/", "/api/ai/precheck/", "/health/"],
+        "frontend": "not-built"
     })
 
 
@@ -33,6 +43,7 @@ def health(_request):
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/', include('api.urls')),
-    path('', root_index, name='root-index'),
     path('health/', health, name='health'),
+    # Root and SPA fallback (any non-API path)
+    re_path(r'^(?!api/).*$', root_index, name='root-index'),
 ]

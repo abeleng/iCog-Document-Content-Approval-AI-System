@@ -45,6 +45,7 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
     'corsheaders.middleware.CorsMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -120,8 +121,17 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/5.2/howto/static-files/
 
 STATIC_URL = 'static/'
-# Added for deployment so collectstatic has a destination (Render build step)
 STATIC_ROOT = BASE_DIR / 'staticfiles'
+
+# Location where Vite build output will be copied (frontend/dist)
+FRONTEND_DIST = BASE_DIR / 'frontend' / 'dist'
+if FRONTEND_DIST.exists():
+    STATICFILES_DIRS = [FRONTEND_DIST]
+else:
+    STATICFILES_DIRS = []
+
+# WhiteNoise compression/manifest for cache busting
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field
