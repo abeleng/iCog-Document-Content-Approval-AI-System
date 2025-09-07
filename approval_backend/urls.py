@@ -16,8 +16,23 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
+from django.http import JsonResponse, HttpResponse
+
+
+def root_index(_request):
+    return JsonResponse({
+        "service": "approval-backend",
+        "status": "ok",
+        "endpoints": ["/api/search/keywords/", "/api/ai/precheck/", "/health/"]
+    })
+
+
+def health(_request):
+    return HttpResponse("OK", content_type="text/plain")
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/', include('api.urls')),
+    path('', root_index, name='root-index'),
+    path('health/', health, name='health'),
 ]
